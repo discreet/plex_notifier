@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import datetime
 
@@ -12,5 +12,5 @@ def get_new(plex, section, days_passed):
         date_added = new_media.addedAt
         time_elapsed = today - date_added
         if time_elapsed.days<days_elapsed:
-            media_titels.append(new_media.title)
+            media_titles.append(new_media.title)
     return media_titles

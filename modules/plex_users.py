@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 def get_emails(plex):
     users = plex.myPlexAccount().users()

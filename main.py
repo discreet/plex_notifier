@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import os
 from modules import plex_auth
@@ -10,10 +10,11 @@ plex_username = os.environ["PLEX_USERNAME"]
 plex_password = os.environ["PLEX_PASSWORD"]
 plex_server = os.environ["PLEX_SERVER"]
 days_passed = os.environ["PLEX_DAYS_PASSED"]
-unsub_emails = os.environ["PLEX_UNSUB_EMAIL"]
-send_mail = os.environ["PLEX_SEND_MAIL"]
-email_username = os.environ["PLEX_EMAIL_USERNAME"]
-email_password = os.environ["PLEX_EMAIL_PASSWORD"]
+send_mail = os.environ.get("PLEX_SEND_MAIL")
+if send_mail in ['True', 'true']:
+    email_username = os.environ["PLEX_EMAIL_USERNAME"]
+    email_password = os.environ["PLEX_EMAIL_PASSWORD"]
+    unsub_emails = os.environ.get("PLEX_UNSUB_EMAIL")
 
 my_plex = plex_auth.connect_to_plex(plex_username, plex_password, plex_server)
 
@@ -24,10 +25,13 @@ if not new_movies:
     exit()
 
 if send_mail in ['True', 'true']:
-    user_emails = plex_users.get_emails(myplex)
-        if unsub_emails:
-            email_list = plex_users.unsub_emails(unsub_emails, user_emails)
-        else:
-            email_list = user_emails
+    user_emails = plex_users.get_emails(my_plex)
+    if unsub_emails:
+        email_list = plex_users.unsub_emails(unsub_emails, user_emails)
+    else:
+        email_list = user_emails
     plex_email.send_mail(email_username, email_password, email_list, new_movies)
-
+    exit()
+else:
+    print new_movies
+    exit()
