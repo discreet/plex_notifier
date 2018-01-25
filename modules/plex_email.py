@@ -1,13 +1,25 @@
 #!/usr/bin/env python
-
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+"""
+This module formats the returned plex media and builds a proper email message.
+It will then send an email to all of the subscribed plex users.
+"""
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import smtplib
 
 def format_media(media):
+    """
+    Takes the array of recently added media and converts it to a string using a
+    newline character as a delimeter.
+    """
     return '\n'.join(media)
 
 def send_mail(username, password, email_list, plex_server, media):
+    """
+    Takes the email username and password, list of email recipients, plex server
+    name and formatted media to compose and send the email to the subscribed
+    users.
+    """
     media = format_media(media)
     unsub = 'To Unsubscribe from this list please reply with the word "Unsubscribe".'
     email_body = 'Recently Added to Plex\n\n%s\n\n%s' % (media, unsub)
@@ -29,4 +41,3 @@ def send_mail(username, password, email_list, plex_server, media):
         server.quit()
 
         print 'Email sent to %s' % (email)
-

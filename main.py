@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""
+This is the main module that executes the program. It holds all the parameters
+and logic used to get the desired behavior.
+"""
 
 import os
 from modules import plex_auth
@@ -6,32 +10,32 @@ from modules import plex_media
 from modules import plex_users
 from modules import plex_email
 
-plex_username = os.environ["PLEX_USERNAME"]
-plex_password = os.environ["PLEX_PASSWORD"]
-plex_server = os.environ["PLEX_SERVER"]
-days_passed = os.environ["PLEX_DAYS_PASSED"]
-send_mail = os.environ.get("PLEX_SEND_MAIL")
-if send_mail in ['True', 'true']:
-    email_username = os.environ["PLEX_EMAIL_USERNAME"]
-    email_password = os.environ["PLEX_EMAIL_PASSWORD"]
-    unsub_emails = os.environ.get("PLEX_UNSUB_EMAIL")
+PLEX_USERNAME = os.environ["PLEX_USERNAME"]
+PLEX_PASSWORD = os.environ["PLEX_PASSWORD"]
+PLEX_SERVER = os.environ["PLEX_SERVER"]
+DAYS_PASSED = os.environ["PLEX_DAYS_PASSED"]
+SEND_MAIL = os.environ.get("PLEX_SEND_MAIL")
+if SEND_MAIL in ['True', 'true']:
+    EMAIL_USERNAME = os.environ["PLEX_EMAIL_USERNAME"]
+    EMAIL_PASSWORD = os.environ["PLEX_EMAIL_PASSWORD"]
+    UNSUB_EMAILS = os.environ.get("PLEX_UNSUB_EMAIL")
 
-my_plex = plex_auth.connect_to_plex(plex_username, plex_password, plex_server)
+MY_PLEX = plex_auth.connect_to_plex(PLEX_USERNAME, PLEX_PASSWORD, PLEX_SERVER)
 
-new_movies = plex_media.get_new(my_plex, 'Movies', days_passed)
+NEW_MOVIES = plex_media.get_new(MY_PLEX, 'Movies', DAYS_PASSED)
 
-if not new_movies:
+if not NEW_MOVIES:
     print 'No new movies added'
     exit()
 
-if send_mail in ['True', 'true']:
-    user_emails = plex_users.get_emails(my_plex)
-    if unsub_emails:
-        email_list = plex_users.unsub_emails(unsub_emails, user_emails)
+if SEND_MAIL in ['True', 'true']:
+    USER_EMAILS = plex_users.get_emails(MY_PLEX)
+    if UNSUB_EMAILS:
+        EMAIL_LIST = plex_users.unsub_emails(UNSUB_EMAILS, USER_EMAILS)
     else:
-        email_list = user_emails
-    plex_email.send_mail(email_username, email_password, email_list, plex_server, new_movies)
+        EMAIL_LIST = USER_EMAILS
+    plex_email.send_mail(EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_LIST, PLEX_SERVER, NEW_MOVIES)
     exit()
 else:
-    print new_movies
+    print NEW_MOVIES
     exit()
