@@ -30,7 +30,7 @@ if send_mail in ['True', 'true']:
         email_list = plex_users.unsub_emails(unsub_emails, user_emails)
     else:
         email_list = user_emails
-    plex_email.send_mail(email_username, email_password, email_list, new_movies)
+    plex_email.send_mail(email_username, email_password, email_list, plex_server, new_movies)
     exit()
 else:
     print new_movies
