@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 
-def format_media(media):
+def __format_media(media):
     """
     Takes the array of recently added media and converts it to a string using a
     newline character as a delimeter.
@@ -20,7 +20,7 @@ def send_mail(username, password, email_list, plex_server, media):
     name and formatted media to compose and send the email to the subscribed
     users.
     """
-    media = format_media(media)
+    media = __format_media(media)
     unsub = 'To Unsubscribe from this list please reply with the word "Unsubscribe".'
     email_body = 'Recently Added to Plex\n\n%s\n\n%s' % (media, unsub)
 
