@@ -1,7 +1,6 @@
 # media_notifier
 
-[![GitHub tag](https://img.shields.io/github/tag/co-llabs/plex_notifier.svg)]()
-[![GitHub pre-release](https://img.shields.io/github/release/co-llabs/plex_notifier/all.svg)]()
+[![GitHub (pre-)release](https://img.shields.io/github/release/co-llabs/plex_notifier/all.svg)]()
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 #### Table of Contents
@@ -84,15 +83,10 @@ change.
 
 ## Disclaimers
 
-As of 2018-01-24 this project is not stable. There has been no versioning, or
-releases. There are no tests, linters or syntax validators. Until there is a
-`develop` branch and a Jenkins pipeline (home project, maybe I'll add Travis or
-Circle too) this will remain an unstable project. A build pipeline is on the
-roadmap for Milestone 2. Tests, linters and syntax validation is on the roadmap
-for Milestone 1. At the end of Milestone one a `develop` branch will be cut and
-the `master` branch will be tagged with a release cut. At such time this project
-can be considered stable.
-
+A first release candidate has been cut. This is minimal viable product but
+stable. Features are limited, test coverage is limited, and there is no
+automated build pipeline yet. A `develop` branch has been cut and work will
+continue there. A build pipeline is on the roadmap for Milestone 2.
 
 This is a first draft and quick pass at a README. A better README and more
 detailed documentation will follow.
@@ -108,5 +102,5 @@ simple.
 2. Cut a feature branch
 3. Write tests
 4. Squash commits
-5. Open pull request
+5. Open pull request to `develop` branch
 
