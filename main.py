@@ -22,7 +22,7 @@ if SEND_MAIL in ['True', 'true']:
 
 MY_PLEX = plex_auth.connect_to_plex(PLEX_USERNAME, PLEX_PASSWORD, PLEX_SERVER)
 
-NEW_MOVIES = plex_media.get_new(MY_PLEX, 'Movies', DAYS_PASSED)
+NEW_MOVIES = plex_media.return_media(MY_PLEX, 'Movies', DAYS_PASSED)
 
 if not NEW_MOVIES:
     print 'No new movies added'
@@ -37,5 +37,6 @@ if SEND_MAIL in ['True', 'true']:
     plex_email.send_mail(EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_LIST, PLEX_SERVER, NEW_MOVIES)
     exit()
 else:
-    print NEW_MOVIES
+    for movie in NEW_MOVIES:
+        print movie
     exit()

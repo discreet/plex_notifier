@@ -24,6 +24,5 @@ def unsub_emails(unsub_list, email_list):
     unsubscribe list.
     """
     excludes = re.split("(\W|\W\s)", unsub_list)
-#    excludes = unsub_list.split(',')
     email_list = list(set(email_list)^set(excludes))
     return email_list
