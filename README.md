@@ -1,5 +1,9 @@
 # media_notifier
 
+[![GitHub tag](https://img.shields.io/github/tag/co-llabs/plex_notifier.svg)]()
+[![GitHub pre-release](https://img.shields.io/github/release/co-llabs/plex_notifier/all.svg)]()
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 #### Table of Contents
 
 1. [Description](#description)
