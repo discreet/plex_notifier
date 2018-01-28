@@ -1,0 +1,21 @@
+language: python
+python:
+- '2.7'
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+install:
+- pip install pylint plexapi
+script:
+- pytest
+- tests/pylint.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: LrnSOrNO7X8DFn5UdOFqKWDjhDZkg9RlXTSN/JIHxRab8BQ/kq3M5EDAroagluRVa1MCZSuoEImkIBv8QH/CsUO1BVPbSEz7q20ostAurbwsRcwEHCvMPY03G+ohkyJJyuDSyFgDv5YW/Jr6HZC+OX0aESSrmwwEgk4TAXWgaY5+rwWXZjhcNPExDnOOSvL//TBIe/se+q78JxsWNYODW+hFk/N/C+/LDUurGxpomNN98c+CGpWl5gSyZVqadWbJxb24CfytfzXh8i2Cao7GBj4wLMrfoYHFAfhb8AOmAgDDsCBlqqji1pEBmTl3RUZghwvaHkKPkMolYSRzOsz/DIWVlgAJesnJ9aDYSf/RQWHVKAUYVicEDWM19eUs9AbCNH6qIKyq9FgU/C9zhRu5cTx4Nny/y6PMCTHY1KYJo069Qvy0AuYQwE8EKoZ/M1WHFgDWnjxxKs645a0fEkJV37wmDCGup9jXHO9WqhfNiFItYDD0SSyMvw+yrcYBNbUIxy5xP42h40CZ0LZOqm65asMvs2zF/s0dXKLXcGtsyAS3WeLI93oapgGBGPdGPcLC21tVich6emTallKeFnZfoX/eWBec67jrMpefDy9W8o23HUpoDIAYkv6PoZlRYq629iaC+p2mKsZuYCKg8aDkDb/l4fD/gP+MHVd2tVCYBzQ=
+  skip_cleanup: true
+  on:
+    repo: co-llabs/plex_notifier
+    branch: master
+    tags: true
