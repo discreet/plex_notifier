@@ -23,6 +23,6 @@ def unsub_emails(unsub_list, email_list):
     Takes the list of plex user email address and filters out the members of the
     unsubscribe list.
     """
-    excludes = re.split("(\W|\W\s)", unsub_list)
+    excludes = re.split(r"(\W|\W\s)", unsub_list)
     email_list = list(set(email_list)^set(excludes))
     return email_list

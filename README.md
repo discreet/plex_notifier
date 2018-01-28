@@ -1,5 +1,6 @@
-# media_notifier
+# plex_notifier
 
+[![Build Status](https://travis-ci.org/co-llabs/plex_notifier.svg?branch=master)](https://travis-ci.org/co-llabs/plex_notifier)
 [![GitHub (pre-)release](https://img.shields.io/github/release/co-llabs/plex_notifier/all.svg)]()
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -83,13 +84,8 @@ change.
 
 ## Disclaimers
 
-A first release candidate has been cut. This is minimal viable product but
-stable. Features are limited, test coverage is limited, and there is no
-automated build pipeline yet. A `develop` branch has been cut and work will
-continue there. A build pipeline is on the roadmap for Milestone 2.
-
-This is a first draft and quick pass at a README. A better README and more
-detailed documentation will follow.
+This is minimal viable product but stable. Features and test coverage are
+limited. More robust features, testing and build pipeline are on the roadmap.
 
 ## Contributions
 
