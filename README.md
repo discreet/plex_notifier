@@ -1,5 +1,6 @@
-# media_notifier
+# plex_notifier
 
+[![Build Status](https://travis-ci.org/co-llabs/plex_notifier.svg?branch=master)](https://travis-ci.org/co-llabs/plex_notifier)
 [![GitHub (pre-)release](https://img.shields.io/github/release/co-llabs/plex_notifier/all.svg)]()
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
