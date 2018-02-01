@@ -12,10 +12,8 @@ def get_emails(plex):
     addresses.
     """
     users = plex.myPlexAccount().users()
-    user_emails = []
+    user_emails = [user.email for user in users]
 
-    for user in users:
-        user_emails.append(user.email)
     return user_emails
 
 def unsub_emails(unsub_list, email_list):

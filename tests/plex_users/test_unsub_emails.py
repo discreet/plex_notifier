@@ -4,7 +4,7 @@ import sys, os
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../../')
 
-from modules import plex_users
+from plex_notifier import plex_users
 
 def test_unsub_emails():
     test_list = ['foo', 'bar', 'baz', 'bip', 'bop']
