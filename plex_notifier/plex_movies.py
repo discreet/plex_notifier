@@ -3,6 +3,7 @@
 This module will query the plex server for recently added media within the
 specified timeframe
 """
+from collections import defaultdict
 from plex_notifier import plex_utils
 
 def __get_movies(plex, section):
@@ -12,6 +13,21 @@ def __get_movies(plex, section):
     """
     return plex.library.section(section).recentlyAdded()
 
+def __format_movies(movies):
+    """
+    """
+    rec_dd = lambda: defaultdict(rec_dd)
+    movie_dict = rec_dd()
+
+    for movie in movies:
+        title = movie.title
+        year = movie.year
+        summary = movie.summary
+        movie_dict[title]['Year'] = year
+        movie_dict[title]['Summary'] = summary
+
+    return movie_dict
+
 def return_movies(plex, section, days_passed):
     """
     Based on the section given retrieves all recently added media for that
@@ -19,6 +35,7 @@ def return_movies(plex, section, days_passed):
     readable output.
     """
     days_elapsed = int(days_passed)
-    new_movies = __get_movies(plex, section)
-    filtered_media = plex_utils.date_filter(new_movies, days_elapsed)
-    return [obj.title for obj in filtered_media]
+    recently_added = __get_movies(plex, section)
+    new_movies = plex_utils.date_filter(recently_added, days_elapsed)
+
+    return __format_movies(new_movies)

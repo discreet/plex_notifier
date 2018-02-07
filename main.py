@@ -5,6 +5,7 @@ and logic used to get the desired behavior.
 """
 
 import os
+import json
 import plex_notifier
 
 PLEX_USERNAME = os.environ["PLEX_USERNAME"]
@@ -32,17 +33,19 @@ if not NEW_MOVIES:
 if not NEW_TELEVISION:
     print 'No new television added'
 
+NEW_MEDIA = {
+    "movies": NEW_MOVIES,
+    "tv": NEW_TELEVISION,
+}
+
 if SEND_MAIL in ['True', 'true']:
     USER_EMAILS = plex_notifier.get_emails(MY_PLEX)
     if UNSUB_EMAILS:
         EMAIL_LIST = plex_notifier.unsub_emails(UNSUB_EMAILS, USER_EMAILS)
     else:
         EMAIL_LIST = USER_EMAILS
-    plex_notifier.send_mail(EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_LIST, PLEX_SERVER, NEW_MOVIES)
+    plex_notifier.send_mail(EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_LIST, PLEX_SERVER, NEW_MEDIA)
     exit()
 else:
-    for movie in NEW_MOVIES:
-        print movie
-
-    print NEW_TELEVISION
+    print json.dumps(NEW_MEDIA, indent=2)
     exit()
