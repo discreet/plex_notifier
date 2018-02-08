@@ -1,0 +1,14 @@
+tasks:
+  install_deps:
+    usage: Install the project dependencies
+    description: |
+      This project uses the `plexapi` library as well as `pylint` and `pytest`.
+    run:
+      - pip install plexapi pylint pytest
+  test:
+    usage: Execute test suite
+    description: |
+      Executes `pylint` and `pytest`
+    run:
+      - pytest
+      - pylint main plex_notifier

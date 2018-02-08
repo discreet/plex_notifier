@@ -5,11 +5,17 @@ notifications:
   email:
     on_success: never
     on_failure: never
+env:
+  global:
+    - GITHUB="https://github.com"
+    - TUSK_VER=0.3.2
+
 install:
-- pip install pylint plexapi
+  - wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
+  - sudo dpkg -i tusk_${TUSK_VER}_linux_amd64.deb
 script:
-- pytest
-- tests/pylint.sh
+  - tusk install_deps
+  - tusk test
 deploy:
   provider: releases
   api_key:
