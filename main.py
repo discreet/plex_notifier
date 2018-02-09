@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 This is the main module that executes the program. It holds all the parameters
 and logic used to get the desired behavior.
@@ -6,6 +6,7 @@ and logic used to get the desired behavior.
 
 import os
 import json
+from collections import namedtuple
 import plex_notifier
 
 PLEX_USERNAME = os.environ["PLEX_USERNAME"]
@@ -24,14 +25,14 @@ NEW_MOVIES = plex_notifier.return_movies(MY_PLEX, 'Movies', DAYS_PASSED)
 NEW_TELEVISION = plex_notifier.return_tv(MY_PLEX, 'TV Shows', DAYS_PASSED)
 
 if not NEW_MOVIES and not NEW_TELEVISION:
-    print 'No new movies or television added'
+    print('No new movies or television added')
     exit()
 
 if not NEW_MOVIES:
-    print 'No new movies added'
+    print('No new movies added')
 
 if not NEW_TELEVISION:
-    print 'No new television added'
+    print('No new television added')
 
 NEW_MEDIA = {
     "movies": NEW_MOVIES,
@@ -44,8 +45,10 @@ if SEND_MAIL in ['True', 'true']:
         EMAIL_LIST = plex_notifier.unsub_emails(UNSUB_EMAILS, USER_EMAILS)
     else:
         EMAIL_LIST = USER_EMAILS
-    plex_notifier.send_mail(EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_LIST, PLEX_SERVER, NEW_MEDIA)
+    Email = namedtuple('Email', 'username password mailing_list')
+    EMAIL_ATTRS = Email(EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_LIST)
+    plex_notifier.send_mail(EMAIL_ATTRS, PLEX_SERVER, NEW_MEDIA)
     exit()
 else:
-    print json.dumps(NEW_MEDIA, indent=2)
+    print(json.dumps(NEW_MEDIA, indent=2))
     exit()

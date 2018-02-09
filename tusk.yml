@@ -1,14 +1,35 @@
 tasks:
-  install_deps:
-    usage: Install the project dependencies
+  bootstrap:
+    usage: Bootstrap the project dependencies
     description: |
-      This project uses the `plexapi` library as well as `pylint` and `pytest`.
+      This project uses `pipenv` to manage python virtualenvs and dependencies.
+      Bootstrap will install the latest version of pipenv and run `pipenv install`,
+      installing all python dependencies after.
     run:
-      - pip install plexapi pylint pytest
+      - pip3 install --upgrade pipenv
+      - pipenv install --dev
   test:
+    usage: Executes pytest
+    description: |
+      Executes `pytest`
+    run:
+      - pipenv run pytest
+  lint:
+    usage: Executes pylint
+    description: |
+      Executes `pylint`
+    run:
+      - pipenv run pylint main plex_notifier
+  test_suite:
     usage: Execute test suite
     description: |
       Executes `pylint` and `pytest`
     run:
-      - pytest
-      - pylint main plex_notifier
+      - pipenv run pytest
+      - pipenv run pylint main plex_notifier
+  run:
+    usage: Run the app
+    description: |
+      Run the app
+    run:
+      - pipenv run python main.py
