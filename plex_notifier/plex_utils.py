@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-commonly used methods
+commonly used functions
 """
 import datetime
 import itertools

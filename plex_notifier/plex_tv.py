@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This module will query the plex server for recently added media within the
+This module will query the plex server for recently added television within the
 specified timeframe
 """
 from collections import namedtuple
@@ -65,9 +65,8 @@ def __format_shows(episodes):
 
 def return_tv(plex, section, days_passed):
     """
-    Based on the section given retrieves all recently added media for that
-    section and then calls the appropriate format function allowing human
-    readable output
+    Retrieves all recently added television for and calls the format function
+    returning human readable output
     """
     days_elapsed = int(days_passed)
     recently_added = __get_tv(plex, section)
