@@ -19,8 +19,6 @@ Recently Added Television:
         {% endfor %}
       {%- endfor %}
     {%- endfor %}
-  {% endif %}
+  {%- endif %}
 {% endfor %}
-
-
 To Unsubscribe from this list please reply with the word "Unsubscribe".

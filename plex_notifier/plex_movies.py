@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This module will query the plex server for recently added media within the
+This module will query the plex server for recently added movies within the
 specified timeframe
 """
 from collections import defaultdict
@@ -8,13 +8,15 @@ from plex_notifier import plex_utils
 
 def __get_movies(plex, section):
     """
-    Takes the plex server, library section and timeframe to query the plex
-    library for the requested media.
+    Takes the plex server, and movies library section to return recently added
+    movies.
     """
     return plex.library.section(section).recentlyAdded()
 
 def __format_movies(movies):
     """
+    This function creates a defaultdict of defaultdicts to build the data
+    structure of the relevent information.
     """
     rec_dd = lambda: defaultdict(rec_dd)
     movie_dict = rec_dd()
@@ -36,9 +38,8 @@ def __format_movies(movies):
 
 def return_movies(plex, section, days_passed):
     """
-    Based on the section given retrieves all recently added media for that
-    section and then calls the appropriate format function allowing human
-    readable output.
+    Retrieves all recently added movies and calls the format function returning
+    human readable output.
     """
     days_elapsed = int(days_passed)
     recently_added = __get_movies(plex, section)
