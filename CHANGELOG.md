@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] - TBD
+## [v0.2.0] - 2018-02-10
 ### Added
 - Tusk for running tasks
 - Python 3.6 support
