@@ -1,10 +1,13 @@
 FROM ubuntu:16.04
 MAINTAINER discr33t <cpisano86@gmail.com>
 
-# Env Vars for Installs
+# Env Vars
+ENV PLEX_DAYS_PASSED=7
+ENV PLEX_SEND_MAIL=false
 ENV GITHUB="https://github.com"
 ENV TUSK_VER="0.3.2"
 ENV NOTIFIER_VER="0.2.0"
+# Needed for pipenv
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
