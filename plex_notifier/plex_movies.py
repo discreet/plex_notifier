@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 This module will query the plex server for recently added media within the
 specified timeframe
@@ -22,8 +22,14 @@ def __format_movies(movies):
     for movie in movies:
         title = movie.title
         year = movie.year
+        rating = movie.contentRating
+        stars = movie.rating
+        release_date = movie.originallyAvailableAt.strftime("%Y-%m-%d")
         summary = movie.summary
+        movie_dict[title]['Rating'] = rating
+        movie_dict[title]['Stars'] = stars
         movie_dict[title]['Year'] = year
+        movie_dict[title]['Release_Date'] = release_date
         movie_dict[title]['Summary'] = summary
 
     return movie_dict

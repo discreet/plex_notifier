@@ -1,6 +1,6 @@
 language: python
 python:
-- '2.7'
+- '3.6'
 notifications:
   email:
     on_success: never
@@ -14,8 +14,8 @@ install:
   - wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
   - sudo dpkg -i tusk_${TUSK_VER}_linux_amd64.deb
 script:
-  - tusk install_deps
-  - tusk test
+  - tusk bootstrap
+  - tusk test_suite
 deploy:
   provider: releases
   api_key:

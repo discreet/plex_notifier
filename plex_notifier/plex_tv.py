@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 This module will query the plex server for recently added media within the
 specified timeframe
@@ -56,7 +56,9 @@ def __format_shows(episodes):
         show = episode.grandparentTitle
         season = episode.parentTitle
         title = episode.title
+        air_date = episode.originallyAvailableAt.strftime("%Y-%m-%d")
         summary = episode.summary
+        episode_dict[show][season][title]['Air_Date'] = air_date
         episode_dict[show][season][title]['Summary'] = summary
 
     return episode_dict
