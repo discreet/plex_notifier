@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 This module establishes the connection to the specified plex server. The
 returned object is then used by other modules and functions to find the desired

@@ -1,0 +1,24 @@
+{% for k,v in media.items() %}
+  {% if k == 'movies' %}
+Recently Added Movies:
+    {% for k,v in v.items() %}
+{{ k }} ({{ v.Rating }}) - {{ v.Year }}
+Released: {{ v.Release_Date }}
+Review Rating: {{ v.Stars }}
+Summary: {{ v.Summary }}
+    {% endfor %}
+  {%- elif k == 'tv' %}
+Recently Added Television:
+    {% for k,v in v.items() %}
+{{ k }}
+      {%- for k,v in v.items() %}
+  {{ k }}
+        {%- for k,v in v.items() %}
+    {{ k }} - Air Date: {{ v.Air_Date }}
+    Summary: {{ v.Summary }}
+        {% endfor %}
+      {%- endfor %}
+    {%- endfor %}
+  {%- endif %}
+{% endfor %}
+To Unsubscribe from this list please reply with the word "Unsubscribe".

@@ -1,0 +1,77 @@
+{
+  "movies": {
+    "Only the Brave": {
+      "Rating": "PG-13",
+      "Stars": 6.2,
+      "Year": 2017,
+      "Release_Date": "2017-10-20",
+      "Summary": "Members of the Granite Mountain Hotshots battle deadly wildfires to save an Arizona town."
+    },
+    "The Post": {
+      "Rating": "PG-13",
+      "Stars": 6.9,
+      "Year": 2017,
+      "Release_Date": "2017-12-14",
+      "Summary": "A cover-up that spanned four U.S. Presidents pushed the country's first female newspaper publisher and a hard-driving editor to join an unprecedented battle between journalist and government. Inspired by true events."
+    },
+    "Jumanji": {
+      "Rating": "PG",
+      "Stars": 7.0,
+      "Year": 1995,
+      "Release_Date": "1995-12-15",
+      "Summary": "When siblings Judy and Peter discover an enchanted board game that opens the door to a magical world, they unwittingly invite Alan -- an adult who's been trapped inside the game for 26 years -- into their living room. Alan's only hope for freedom is to finish the game, which proves risky as all three find themselves running from giant rhinoceroses, evil monkeys and other terrifying creatures."
+    },
+    "Magic Mike": {
+      "Rating": "R",
+      "Stars": 6.0,
+      "Year": 2012,
+      "Release_Date": "2012-06-29",
+      "Summary": "Mike, an experienced stripper, takes a younger performer called The Kid under his wing and schools him in the arts of partying, picking up women, and making easy money."
+    },
+    "Magic Mike XXL": {
+      "Rating": "R",
+      "Stars": 6.2,
+      "Year": 2015,
+      "Release_Date": "2015-07-01",
+      "Summary": "Three years after Mike bowed out of the stripper life at the top of his game, he and the remaining Kings of Tampa hit the road to Myrtle Beach to put on one last blow-out performance."
+    }
+  },
+  "tv": {
+    "Scorpion": {
+      "Season 4": {
+        "Wave Goodbye": {
+          "Air_Date": "2018-01-29",
+          "Summary": "Team Scorpion must prevent an incoming tsunami from hitting a vulnerable nuclear power facility, and Toby secretly helps his ex-fianc\u00e9e retrieve her stolen identity."
+        }
+      }
+    },
+    "The Magicians (2015)": {
+      "Season 3": {
+        "Be the Penny": {
+          "Air_Date": "2018-01-31",
+          "Summary": "As Eliot is hunted, Quentin and Julia discover a powerful secret tied to the history of Brakebills."
+        }
+      }
+    },
+    "The Good Place": {
+      "Season 2": {
+        "Somewhere Else": {
+          "Air_Date": "2018-02-01",
+          "Summary": "Season Finale. Michael makes a plea; Eleanor looks to take the high road; Michael tries to pull a rabbit out of a hat."
+        }
+      }
+    },
+    "Blindspot": {
+      "Season 3": {
+        "Two Legendary Chums": {
+          "Air_Date": "2018-02-02",
+          "Summary": "Weller and his former FBI partner reunite for a dangerous undercover mission while Zapata interrogates a past foe."
+        },
+        "Technology Wizards": {
+          "Air_Date": "2018-01-26",
+          "Summary": "While Jane and Weller partner with a mysterious man from Jane's past to find a missing person, the team races to stop an arms deal."
+        }
+      }
+    }
+  }
+}

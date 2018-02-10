@@ -8,7 +8,8 @@
 
 1. [Description](#description)
 2. [Setup](#setup)
-    * [Setup](#requirements)
+    * [Requirements](#requirements)
+    * [Tusk](#tusk)
     * [Setting Parameters](#setting-parameters)
 3. [Limitations](#limitations)
 4. [Disclaimers](#disclaimers)
@@ -22,10 +23,30 @@ sends an email to the subscribed users with a list of said media.
 
 ### Requirements
 
-* Python 2.7
-* plexapi pip package
+* Python 3.6
+* Jinja2
+* [PlexAPI](https://github.com/pkkid/python-plexapi)
+* [Yagmail](https://github.com/kootenpv/yagmail)
+* [Tusk](https://github.com/rliebz/tusk)
 * Gmail account configured to send from an application
-  For Gmail reference look [here](http://naelshiab.com/tutorial-send-email-python/)
+
+### Tusk
+
+Tusk is a task runner built in go that makes it easy to get started and work
+within the confines of a project. You can read all about the project at the link
+listed above.
+
+#### How is Tusk Used
+
+For this project Tusk is ust to setup `pipenv` to manage python vitualenvs and
+dependencies. It is also used to run the test suite (`pytest` and `pylint`);
+which can be run separately if needed. Lastly it is used to run the application
+itself.
+
+Running `tusk -h` will give a full output of Tasks and Global Options. `tusk
+<task> -h` will give detailed information on the different tasks. The tasks used
+most are `tusk bootstrap` to get started with the project and `tusk test_suite`
+to run the test suite.
 
 ### Setting Parameters
 
@@ -73,11 +94,8 @@ the option of commandline arguments will be given.
 
 ## Limitations
 
-Currently only Python 2.7 is supported. A future upgrade to Python 3 is in the
-roadmap as part of Milestone 2
-
-Currently only the `Movies` section is queried, parsed and formatted. A future
-update to include the `TV Shows` section is in the roadmap for Milestone 2.
+Currently only the `Movies` and `TV Shows` sections are queried, parsed and
+formatted.
 
 Currently the only mail provider supported is Gmail. This most likely will not
 change.
