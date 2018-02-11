@@ -6,8 +6,16 @@ and logic used to get the desired behavior.
 
 import os
 import json
+import argparse
 from collections import namedtuple
 import plex_notifier
+
+PARSER = argparse.ArgumentParser()
+PARSER.add_argument("--schedule", help="create scheduled execution",
+                    action="store_true")
+PARSER.add_argument("--cancel", help="cancel scheduled execution",
+                    action="store_true")
+ARGS = PARSER.parse_args()
 
 PLEX_USERNAME = os.environ["PLEX_USERNAME"]
 PLEX_PASSWORD = os.environ["PLEX_PASSWORD"]
@@ -19,7 +27,16 @@ if SEND_MAIL in ['True', 'true']:
     EMAIL_PASSWORD = os.environ["PLEX_EMAIL_PASSWORD"]
     UNSUB_EMAILS = os.environ.get("PLEX_UNSUB_EMAIL")
 
-MY_PLEX = plex_notifier.connect_to_plex(PLEX_USERNAME, PLEX_PASSWORD, PLEX_SERVER)
+if ARGS.schedule:
+    plex_notifier.schedule(os.path.abspath(__file__), DAYS_PASSED)
+    exit()
+
+if ARGS.cancel:
+    plex_notifier.cancel()
+    exit()
+
+MY_PLEX = plex_notifier.connect_to_plex(PLEX_USERNAME, PLEX_PASSWORD,
+                                        PLEX_SERVER)
 
 NEW_MOVIES = plex_notifier.return_movies(MY_PLEX, 'Movies', DAYS_PASSED)
 NEW_TELEVISION = plex_notifier.return_tv(MY_PLEX, 'TV Shows', DAYS_PASSED)

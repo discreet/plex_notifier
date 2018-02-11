@@ -6,12 +6,14 @@ specified timeframe
 from collections import defaultdict
 from plex_notifier import plex_utils
 
+
 def __get_movies(plex, section):
     """
     Takes the plex server, and movies library section to return recently added
     movies.
     """
     return plex.library.section(section).recentlyAdded()
+
 
 def __format_movies(movies):
     """
@@ -35,6 +37,7 @@ def __format_movies(movies):
         movie_dict[title]['Summary'] = summary
 
     return movie_dict
+
 
 def return_movies(plex, section, days_passed):
     """

@@ -7,6 +7,7 @@ from collections import namedtuple
 from collections import defaultdict
 from plex_notifier import plex_utils
 
+
 def __get_tv(plex, section):
     """
     This function fetches all of the recently added episodes, seasons and shows
@@ -17,6 +18,7 @@ def __get_tv(plex, section):
     seasons = plex.library.section(section).recentlyAdded(libtype='season')
     television = namedtuple('Television', 'shows seasons episodes')
     return television(shows, seasons, episodes)
+
 
 def __get_show_episodes(plex, section, days_elapsed, new_shows):
     """
@@ -31,6 +33,7 @@ def __get_show_episodes(plex, section, days_elapsed, new_shows):
 
     return show_episodes
 
+
 def __get_season_episodes(plex, section, days_elapsed, new_seasons):
     """
     This function retrieves a list of episodes for each new season and filters
@@ -44,10 +47,11 @@ def __get_season_episodes(plex, section, days_elapsed, new_seasons):
 
     return season_episodes
 
+
 def __format_shows(episodes):
     """
-    This function takes a list of episodes and creates a JSON structure with all
-    of the information to be used in the email newsletter
+    This function takes a list of episodes and creates a JSON structure with
+    all of the information to be used in the email newsletter
     """
     rec_dd = lambda: defaultdict(rec_dd)
     episode_dict = rec_dd()
@@ -62,6 +66,7 @@ def __format_shows(episodes):
         episode_dict[show][season][title]['Summary'] = summary
 
     return episode_dict
+
 
 def return_tv(plex, section, days_passed):
     """

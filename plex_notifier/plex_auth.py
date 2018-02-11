@@ -6,6 +6,7 @@ media.
 """
 from plexapi.myplex import MyPlexAccount
 
+
 def connect_to_plex(username, password, server):
     """
     Takes the plex username, password and server name in order to

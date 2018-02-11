@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-This module gets a list of all the email addresses for the subscribed plex users
-and can filter out unsubscribed users if needed.
+This module gets a list of all the email addresses for the subscribed plex
+users and can filter out unsubscribed users if needed.
 """
 
 import re
+
 
 def get_emails(plex):
     """
@@ -16,10 +17,11 @@ def get_emails(plex):
 
     return user_emails
 
+
 def unsub_emails(unsub_list, email_list):
     """
-    Takes the list of plex user email address and filters out the members of the
-    unsubscribe list.
+    Takes the list of plex user email address and filters out the members of
+    the unsubscribe list.
     """
     excludes = re.split(r",|,\s", unsub_list)
     email_list = list(set(email_list)^set(excludes))

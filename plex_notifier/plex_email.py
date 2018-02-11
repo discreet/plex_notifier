@@ -7,6 +7,7 @@ import re
 import yagmail
 import jinja2
 
+
 def __format_body(media, template):
     """
     This function loads the email body template and renders the contents using
@@ -18,16 +19,18 @@ def __format_body(media, template):
 
     return template.render(media=media)
 
+
 def send_mail(email_attrs, plex_server, new_media):
     """
-    Takes the namedtuple of email attributes, plex server, and dictionary of new
-    media. The media will be formatted and the email composed and sent to the
-    subscribed users.
+    Takes the namedtuple of email attributes, plex server, and dictionary of
+    new media. The media will be formatted and the email composed and sent to
+    the subscribed users.
     """
     yag = yagmail.SMTP(email_attrs.username, email_attrs.password)
     body = __format_body(new_media, 'email')
     subject = 'Plex Update: New Media Added to %s' % (plex_server)
-    email_regex = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    email_regex = re.compile(
+        r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
     for obj in email_attrs.mailing_list:
         if re.match(email_regex, obj):

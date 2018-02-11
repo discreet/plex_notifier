@@ -63,7 +63,7 @@ tasks:
     run:
       - when:
           equal: {lint: true}
-        command: pipenv run pylint main schedule plex_notifier
+        command: pipenv run pylint main plex_notifier
       - when:
           equal: {test: true}
         command: pipenv run pytest
@@ -72,7 +72,7 @@ tasks:
           equal: {test: false}
         command:
           - pipenv run pytest
-          - pipenv run pylint main schedule plex_notifier
+          - pipenv run pylint main plex_notifier
   run:
     usage: Run the app
     description: |
