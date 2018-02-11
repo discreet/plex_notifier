@@ -18,7 +18,6 @@ install:
 script:
 - tusk bootstrap
 - tusk test_suite
-- docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 deploy:
   provider: releases
   api_key:
@@ -29,6 +28,6 @@ deploy:
     branch: master
     tags: true
 after_deploy:
-- docker build -t plex_notifier:${TRAVIS_TAG} .
-- docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+- tusk docker_build --tag ${TRAVIS_TAG}
+- docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 - docker push ${DOCKER_USERNAME}/plex_notifier:${TRAVIS_TAG}

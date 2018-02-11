@@ -10,7 +10,7 @@ name = "pypi"
 "jinja2" = "*"
 yagmail = {extras = ["all"]}
 plexapi = "*"
-
+python-crontab = "*"
 
 [dev-packages]
 
