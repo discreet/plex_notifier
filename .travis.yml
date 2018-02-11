@@ -11,7 +11,6 @@ env:
   global:
   - GITHUB="https://github.com"
   - TUSK_VER=0.3.2
-  - secure: xQ+VoYO4w+WzteG42c2jQmel1F8lyWFK2g9eHil/5eOGI7Ro/vNDIqcdyMv4cXaBjQ+RGt6pCti3mDgCky7gdC7nFWHgS0hLWEfeSN0QkH9mN/pMVv1eyjxESJbrsLOva49aXPI2tRfcuMXW5O49090I8FMtDByDtqkym8VkIA9rgqM/Pmoh4HRqPp6+S5isdwzFIcQYhHQSIWOAQAK0O9F0LixZ++ODHCorO52ZRmcvmPkFfh88Ktlneno30nysJHYHKYN4ShN8/V0vUK30OSC9hDZR0O76fSgM1zvu5l6C/XEU/skfINtDchDZE32Ld9souljp+JH4sC99tNb9gnbWrEww6sAYppKv8hKbRlKQfgIyxzHiHA/f/apNRmkcdXZLoh0MnhtiEMSTHnXL5G6qG+uwdUAo4QMkBrOad1hypi4pgMH8sSM+ksvxQqcrNzLLW49vftFfcICpFd5hkgp+tqTWRmuwiFhI9Uu13/1v4L34mP5/uYFr8KQhDMuRzzLQFU+Qq/inpZPVFxRoD93YKD7WAM1VOVkn0O60zWOzBYwNiFq4qTB8xdqdEqvslrgns5a27FdYbKYM4pJ4aTCeESa/XDwN9dD7rrcdQSujfuZ83Mdvbmnqx6ngI5mepUFU+xNhei+tVrbeRTOFKh8QChKrO91jVPorGE3Reio=
 install:
   - wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
   - sudo dpkg -i tusk_${TUSK_VER}_linux_amd64.deb
