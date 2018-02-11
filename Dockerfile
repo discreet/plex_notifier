@@ -21,8 +21,9 @@ RUN tar xvfz v${NOTIFIER_VER}.tar.gz
 
 # Install Deps and Test
 WORKDIR /opt/plex_notifier-${NOTIFIER_VER}
-RUN tusk setup
-RUN tusk check
+# Change to tusk setup and tusk check when prepping for release
+RUN tusk bootstrap
+RUN tusk test_suite
 
 # Cleanup Artifacts
 RUN rm -rf /opt/tusk_${TUSK_VER}_linux_amd64.deb
