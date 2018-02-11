@@ -18,6 +18,7 @@ install:
 script:
 - tusk setup
 - tusk check
+- tusk docker --action build --tag ${TRAVIS_COMMIT}
 deploy:
   provider: releases
   api_key:
