@@ -1,10 +1,12 @@
 language: python
 python:
 - '3.6'
+services:
+  - docker
 notifications:
   email:
-    on_success: never
-    on_failure: never
+    on_success: change
+    on_failure: change
 env:
   global:
     - GITHUB="https://github.com"
@@ -25,3 +27,5 @@ deploy:
     repo: co-llabs/plex_notifier
     branch: master
     tags: true
+after_deploy:
+  - docker build -t plex_notifier:${TRAVIS_TAG} .
