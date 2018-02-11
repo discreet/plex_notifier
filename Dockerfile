@@ -7,6 +7,9 @@ ENV PLEX_SEND_MAIL=false
 ENV GITHUB="https://github.com"
 ENV TUSK_VER="0.3.2"
 ENV NOTIFIER_VER="0.2.0"
+# Remove when prepping for release
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 # Where everthing runs from
 WORKDIR /opt
