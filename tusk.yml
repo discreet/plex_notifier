@@ -1,64 +1,78 @@
 tasks:
-  bootstrap:
+  setup:
     usage: Bootstrap the project dependencies
     description: |
       This project uses `pipenv` to manage python virtualenvs and dependencies.
       Bootstrap will install the latest version of pipenv and run `pipenv install`,
       installing all python dependencies after.
     run:
-      - pip3 install --upgrade pipenv
-      - pipenv install --dev
-  docker_build:
-    usage: Build Docker container
+      - when:
+          os: darwin
+        command:
+          - brew install python3
+          - brew cask install docker
+          - brew install docker-machine-completion
+      - when:
+          os: linux
+        environment:
+          LC_ALL: C.UTF-8
+          LANG: C.UTF-8
+      - when:
+          os:
+            - darwin
+            - linux
+        command:
+          - pip3 install --upgrade pipenv
+          - pipenv install --dev
+  docker:
+    usage: Execute docker commands
     description: |
-      Builds a Docker container with the `latest` tag for testing changes to the
-      Dockerfile
+      Used to build, run and destroy test containers. If a proper tag is passed
+      it can be used to build a production container.
     options:
+      action:
+        usage: build, run, destroy
+        required: true
       tag:
-        usage: Docker tag
+        usage: docker tag
         default: latest
     run:
-      - docker build -t plex_notifier:${tag} .
-  docker_run:
-    usage: Run Docker container
+      - when:
+          equal: {action: build}
+        command: docker build -t plex_notifier:${tag} .
+      - when:
+          equal: {action: run}
+        command: docker run --env-file ~/.plex_envs -it plex_notifier:${tag} bash
+      - when:
+          equal: {action: destroy}
+        command: docker rmi plex_notifier:${tag} -f
+  check:
+    usage: Executes test suite
     description: |
-      Runs the built Docker container interactively for testing and
-      troubleshooting. Assumes the `.plex_envs` file is in the home directory
+      Can execute the entire test suite (pytest and pylint) or if specified just
+      pytest or pylint independently.
     options:
-      tag:
-        usage: Docker tag
-        default: latest
+      lint:
+        usage: execute pylint only
+        type: bool
+        default: false
+      test:
+        usage: execute pytest only
+        type: bool
+        default: false
     run:
-      - docker run --env-file ~/.plex_envs -it plex_notifier:${tag} bash
-  docker_delete:
-    usage: Removes Docker container
-    description: |
-      Removes the Docker container built for testing from the machine
-    options:
-      tag:
-        usage: Docker tag
-        default: latest
-    run:
-      - docker rmi plex_notifier:${tag} -f
-  test:
-    usage: Executes pytest
-    description: |
-      Executes `pytest`
-    run:
-      - pipenv run pytest
-  lint:
-    usage: Executes pylint
-    description: |
-      Executes `pylint`
-    run:
-      - pipenv run pylint main schedule plex_notifier
-  test_suite:
-    usage: Execute test suite
-    description: |
-      Executes `pylint` and `pytest`
-    run:
-      - pipenv run pytest
-      - pipenv run pylint main schedule plex_notifier
+      - when:
+          equal: {lint: true}
+        command: pipenv run pylint main schedule plex_notifier
+      - when:
+          equal: {test: true}
+        command: pipenv run pytest
+      - when:
+          equal: {lint: false}
+          equal: {test: false}
+        command:
+          - pipenv run pytest
+          - pipenv run pylint main schedule plex_notifier
   run:
     usage: Run the app
     description: |

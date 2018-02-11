@@ -7,9 +7,6 @@ ENV PLEX_SEND_MAIL=false
 ENV GITHUB="https://github.com"
 ENV TUSK_VER="0.3.2"
 ENV NOTIFIER_VER="0.2.0"
-# Needed for pipenv
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
 
 # Where everthing runs from
 WORKDIR /opt
@@ -24,8 +21,8 @@ RUN tar xvfz v${NOTIFIER_VER}.tar.gz
 
 # Install Deps and Test
 WORKDIR /opt/plex_notifier-${NOTIFIER_VER}
-RUN tusk bootstrap
-RUN tusk test_suite
+RUN tusk setup
+RUN tusk check
 
 # Cleanup Artifacts
 RUN rm -rf /opt/tusk_${TUSK_VER}_linux_amd64.deb

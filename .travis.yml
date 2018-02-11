@@ -16,8 +16,8 @@ install:
 - wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
 - sudo dpkg -i tusk_${TUSK_VER}_linux_amd64.deb
 script:
-- tusk bootstrap
-- tusk test_suite
+- tusk setup
+- tusk check
 deploy:
   provider: releases
   api_key:
@@ -28,6 +28,6 @@ deploy:
     branch: master
     tags: true
 after_deploy:
-- tusk docker_build --tag ${TRAVIS_TAG}
+- tusk docker --action build --tag ${TRAVIS_TAG}
 - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 - docker push ${DOCKER_USERNAME}/plex_notifier:${TRAVIS_TAG}
