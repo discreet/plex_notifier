@@ -8,10 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Dockerfile for container build
 - `after_deploy` steps for building/pushing Docker
+- CLI arguments for scheduling
+
+### Modified
+- Expand `tusk` for Docker and running `plex_notifier`
+- Expand setup requirements in `tusk`
+- Expand `.travis.yml` to build container with current commit
 
 ## [v0.2.0] - 2018-02-10
 ### Added
-- Tusk for running tasks
+- `tusk` for running tasks
 - Python 3.6 support
 - Pipenv for dependency management
 - Jinja2 templating for email
