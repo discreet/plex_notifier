@@ -5,16 +5,20 @@ and logic used to get the desired behavior.
 """
 
 import os
+import sys
 import json
 import argparse
 from collections import namedtuple
 import plex_notifier
 
 PARSER = argparse.ArgumentParser()
-PARSER.add_argument("--schedule", help="create scheduled execution",
+PARSER.add_argument("-s", "--schedule", help="create scheduled execution",
                     action="store_true")
-PARSER.add_argument("--cancel", help="cancel scheduled execution",
+PARSER.add_argument("-c", "--cancel", help="cancel scheduled execution",
                     action="store_true")
+if len(sys.argv) == 1:
+    PARSER.print_help()
+    sys.exit(1)
 ARGS = PARSER.parse_args()
 
 PLEX_USERNAME = os.environ["PLEX_USERNAME"]
@@ -41,19 +45,19 @@ MY_PLEX = plex_notifier.connect_to_plex(PLEX_USERNAME, PLEX_PASSWORD,
 NEW_MOVIES = plex_notifier.return_movies(MY_PLEX, 'Movies', DAYS_PASSED)
 NEW_TELEVISION = plex_notifier.return_tv(MY_PLEX, 'TV Shows', DAYS_PASSED)
 
-if not NEW_MOVIES and not NEW_TELEVISION:
-    print('No new movies or television added')
-    exit()
-
 if not NEW_MOVIES:
     print('No new movies added')
 
 if not NEW_TELEVISION:
     print('No new television added')
 
+if not NEW_MOVIES and not NEW_TELEVISION:
+    print('No new movies or television added')
+    exit()
+
 NEW_MEDIA = {
-    "movies": NEW_MOVIES,
-    "tv": NEW_TELEVISION,
+    'movies': NEW_MOVIES,
+    'tv': NEW_TELEVISION,
 }
 
 if SEND_MAIL in ['True', 'true']:
