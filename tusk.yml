@@ -73,9 +73,27 @@ tasks:
         command:
           - pipenv run pytest
           - pipenv run pylint main plex_notifier
-  run:
-    usage: Run the app
+  notify:
+    usage: Run plex_notifier app
     description: |
-      Run the app
+      This will run the plex_notifier app with the optiosn provided.
+    options:
+      schedule:
+        usage: schedule plex_notifier to run via cron
+        type: bool
+        default: false
+      cancel:
+        usage: cancel the plex_notifier cron job
+        type: bool
+        default: false
     run:
-      - pipenv run python main.py
+      - when:
+          equal: {schedule: true}
+        command: pipenv run python main.py --schedule
+      - when:
+          equal: {cancel: true}
+        command: pipenv run python main.py --cancel
+      - when:
+          equal: {schedule: false}
+          equal: {cancel: false}
+        command: pipenv run python main.py
