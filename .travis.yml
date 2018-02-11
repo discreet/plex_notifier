@@ -2,30 +2,32 @@ language: python
 python:
 - '3.6'
 services:
-  - docker
+- docker
 notifications:
   email:
     on_success: change
     on_failure: change
 env:
   global:
-    - GITHUB="https://github.com"
-    - TUSK_VER=0.3.2
-
+  - GITHUB="https://github.com"
+  - TUSK_VER=0.3.2
+  - secure: xQ+VoYO4w+WzteG42c2jQmel1F8lyWFK2g9eHil/5eOGI7Ro/vNDIqcdyMv4cXaBjQ+RGt6pCti3mDgCky7gdC7nFWHgS0hLWEfeSN0QkH9mN/pMVv1eyjxESJbrsLOva49aXPI2tRfcuMXW5O49090I8FMtDByDtqkym8VkIA9rgqM/Pmoh4HRqPp6+S5isdwzFIcQYhHQSIWOAQAK0O9F0LixZ++ODHCorO52ZRmcvmPkFfh88Ktlneno30nysJHYHKYN4ShN8/V0vUK30OSC9hDZR0O76fSgM1zvu5l6C/XEU/skfINtDchDZE32Ld9souljp+JH4sC99tNb9gnbWrEww6sAYppKv8hKbRlKQfgIyxzHiHA/f/apNRmkcdXZLoh0MnhtiEMSTHnXL5G6qG+uwdUAo4QMkBrOad1hypi4pgMH8sSM+ksvxQqcrNzLLW49vftFfcICpFd5hkgp+tqTWRmuwiFhI9Uu13/1v4L34mP5/uYFr8KQhDMuRzzLQFU+Qq/inpZPVFxRoD93YKD7WAM1VOVkn0O60zWOzBYwNiFq4qTB8xdqdEqvslrgns5a27FdYbKYM4pJ4aTCeESa/XDwN9dD7rrcdQSujfuZ83Mdvbmnqx6ngI5mepUFU+xNhei+tVrbeRTOFKh8QChKrO91jVPorGE3Reio=
 install:
-  - wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
-  - sudo dpkg -i tusk_${TUSK_VER}_linux_amd64.deb
+- wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
+- sudo dpkg -i tusk_${TUSK_VER}_linux_amd64.deb
 script:
-  - tusk bootstrap
-  - tusk test_suite
+- tusk bootstrap
+- tusk test_suite
 deploy:
   provider: releases
   api_key:
     secure: LrnSOrNO7X8DFn5UdOFqKWDjhDZkg9RlXTSN/JIHxRab8BQ/kq3M5EDAroagluRVa1MCZSuoEImkIBv8QH/CsUO1BVPbSEz7q20ostAurbwsRcwEHCvMPY03G+ohkyJJyuDSyFgDv5YW/Jr6HZC+OX0aESSrmwwEgk4TAXWgaY5+rwWXZjhcNPExDnOOSvL//TBIe/se+q78JxsWNYODW+hFk/N/C+/LDUurGxpomNN98c+CGpWl5gSyZVqadWbJxb24CfytfzXh8i2Cao7GBj4wLMrfoYHFAfhb8AOmAgDDsCBlqqji1pEBmTl3RUZghwvaHkKPkMolYSRzOsz/DIWVlgAJesnJ9aDYSf/RQWHVKAUYVicEDWM19eUs9AbCNH6qIKyq9FgU/C9zhRu5cTx4Nny/y6PMCTHY1KYJo069Qvy0AuYQwE8EKoZ/M1WHFgDWnjxxKs645a0fEkJV37wmDCGup9jXHO9WqhfNiFItYDD0SSyMvw+yrcYBNbUIxy5xP42h40CZ0LZOqm65asMvs2zF/s0dXKLXcGtsyAS3WeLI93oapgGBGPdGPcLC21tVich6emTallKeFnZfoX/eWBec67jrMpefDy9W8o23HUpoDIAYkv6PoZlRYq629iaC+p2mKsZuYCKg8aDkDb/l4fD/gP+MHVd2tVCYBzQ=
   skip_cleanup: true
   on:
-    repo: discreet/plex_notifier
-    branch: containerization
+    repo: co-llabs/plex_notifier
+    branch: master
     tags: true
 after_deploy:
   - docker build -t plex_notifier:${TRAVIS_TAG} .
+  - docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+  - docker push ${DOCKER_USERNAME}/plex_notifier:${TRAVIS_TAG}
