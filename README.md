@@ -11,6 +11,7 @@
     * [Requirements](#requirements)
     * [Tusk](#tusk)
     * [Setting Parameters](#setting-parameters)
+    * [Docker](#docker)
 3. [Limitations](#limitations)
 4. [Disclaimers](#disclaimers)
 
@@ -91,6 +92,31 @@ the option of commandline arguments will be given.
   * Set from the environment parameter `PLEX_UNSUB_EMAIL`
   * Comma separated string of emails to omit from sending
   * Optional
+
+### Docker
+
+`plex_notifier` can also be run as a container. With each release a Docker
+container is built and published to Docker Hub. This might be an easier solution
+for those not wanting to deal with setting up a Python environment with Tusk and
+managing a scheduler like cron.
+
+#### Running the Container
+
+Docker must be installed on the system the container will run on. For Mac OS X
+this can be done with Homebrew. For CentOS distros or Ubuntu distros apt or yum
+can be used.
+
+Pull the latest version of the container from [Docker Hub](https://hub.docker.com/r/discr33t/plex_notifier/),
+which should be inline with the GitHub release.
+
+Create a `plex_envs` file for the environment variables necessary to run the
+application. A list can be found in the [Setting
+Parameters](#setting-parameters) section above.
+
+Run the Docker container passing the `plex_envs` file.
+```
+docker run --env-file <path/to/plex_envs> plex_notifier:<version tag>
+```
 
 ## Limitations
 

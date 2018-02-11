@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased] - TBD
+### Added
+- Dockerfile for container build
+- `after_deploy` steps for building/pushing Docker
+
 ## [v0.2.0] - 2018-02-10
 ### Added
 - Tusk for running tasks
