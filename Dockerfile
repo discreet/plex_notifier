@@ -31,3 +31,7 @@ RUN tusk test_suite
 # Cleanup Artifacts
 RUN rm -rf /opt/tusk_${TUSK_VER}_linux_amd64.deb
 RUN rm -rf /opt/v${NOTIFIER_VER}.tar.gz
+
+# Uncomment when prepping for release
+# Schedule plex_notifier
+#CMD ["tusk","notify","--schedule"]
