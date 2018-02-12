@@ -17,13 +17,9 @@ tasks:
         environment:
           LC_ALL: C.UTF-8
           LANG: C.UTF-8
-      - when:
-          os:
-            - darwin
-            - linux
-        command:
-          - pip3 install --upgrade pipenv
-          - pipenv install --dev
+      - command:
+        - pip3 install --upgrade pipenv
+        - pipenv install --dev
   docker:
     usage: Execute docker commands
     description: |
