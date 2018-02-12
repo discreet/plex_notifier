@@ -16,3 +16,4 @@ python-crontab = "*"
 
 pytest = "*"
 pylint = "*"
+flake8 = "*"

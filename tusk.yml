@@ -42,15 +42,15 @@ tasks:
         command: docker build -t plex_notifier:${tag} .
       - when:
           equal: {action: run}
-        command: docker run --env-file ~/.plex_envs -it plex_notifier:${tag} bash
+        command: docker run --env-file ${HOME}/.plex_envs -it plex_notifier:${tag} bash
       - when:
           equal: {action: destroy}
         command: docker rmi plex_notifier:${tag} -f
   check:
     usage: Executes test suite
     description: |
-      Can execute the entire test suite (pytest and pylint) or if specified just
-      pytest or pylint independently.
+      Can execute the entire test suite (pytest, pylint) or if
+      specified just pytest or pylint independently.
     options:
       lint:
         usage: execute pylint only
@@ -63,7 +63,8 @@ tasks:
     run:
       - when:
           equal: {lint: true}
-        command: pipenv run pylint main plex_notifier
+        command:
+          - pipenv run pylint main plex_notifier
       - when:
           equal: {test: true}
         command: pipenv run pytest
@@ -73,6 +74,13 @@ tasks:
         command:
           - pipenv run pytest
           - pipenv run pylint main plex_notifier
+  flake:
+    usage: Run flake8 linting
+    description: |
+      This will run flake8. It will remain it's own task until such time as it
+      is fully configured and passing.
+    run:
+      - pipenv run flake8
   notify:
     usage: Run plex_notifier app
     description: |
