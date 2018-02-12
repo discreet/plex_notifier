@@ -1,6 +1,7 @@
 """
 importing public methods
 """
+from .plex_args import cli_args
 from .plex_auth import connect_to_plex
 from .plex_movies import return_movies
 from .plex_tv import return_tv

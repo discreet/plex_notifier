@@ -5,21 +5,9 @@ and logic used to get the desired behavior.
 """
 
 import os
-import sys
 import json
-import argparse
 from collections import namedtuple
 import plex_notifier
-
-PARSER = argparse.ArgumentParser()
-PARSER.add_argument("-s", "--schedule", help="create scheduled execution",
-                    action="store_true")
-PARSER.add_argument("-c", "--cancel", help="cancel scheduled execution",
-                    action="store_true")
-if len(sys.argv) == 1:
-    PARSER.print_help()
-    sys.exit(1)
-ARGS = PARSER.parse_args()
 
 PLEX_USERNAME = os.environ["PLEX_USERNAME"]
 PLEX_PASSWORD = os.environ["PLEX_PASSWORD"]
@@ -30,6 +18,8 @@ if SEND_MAIL in ['True', 'true']:
     EMAIL_USERNAME = os.environ["PLEX_EMAIL_USERNAME"]
     EMAIL_PASSWORD = os.environ["PLEX_EMAIL_PASSWORD"]
     UNSUB_EMAILS = os.environ.get("PLEX_UNSUB_EMAIL")
+
+ARGS = plex_notifier.cli_args()
 
 if ARGS.schedule:
     plex_notifier.schedule(os.path.abspath(__file__), DAYS_PASSED)
