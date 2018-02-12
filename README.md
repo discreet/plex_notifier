@@ -7,20 +7,21 @@
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup](#setup)
-    * [Requirements](#requirements)
-    * [Tusk](#tusk)
-    * [Setting Parameters](#setting-parameters)
-    * [Docker](#docker)
-3. [Limitations](#limitations)
-4. [Disclaimers](#disclaimers)
+2. [Requirements](#requirements)
+3. [Tusk](#tusk)
+    * [What It Does](#what-it-does)
+    * [Tasks](#tasks)
+    * [Where It Is Used](#where-it-is-used)
+4. [Setting Parameters](#setting-parameters)
+5. [Docker](#docker)
+    * [Running the Container](#running-the-container)
+6. [Limitations](#limitations)
+7. [Disclaimers](#disclaimers)
 
 ## Description
 
 A little Python program that queries a Plex server for recently added media and
 sends an email to the subscribed users with a list of said media.
-
-## Setup
 
 ### Requirements
 
@@ -37,17 +38,44 @@ Tusk is a task runner built in go that makes it easy to get started and work
 within the confines of a project. You can read all about the project at the link
 listed above.
 
-#### How is Tusk Used
+#### What It Does
 
-For this project Tusk is ust to setup `pipenv` to manage python vitualenvs and
-dependencies. It is also used to run the test suite (`pytest` and `pylint`);
-which can be run separately if needed. Lastly it is used to run the application
-itself.
+Tusk does everything from manage dependencies to deployments. There are a number
+of tasks configured in the `tusk.yml` file that help make getting started with
+and working on this project easier. A full list of tasks can be viewed by
+running `tusk --help` and information on each individual task can be viewed by
+running `tusk <task> --help`.
 
-Running `tusk -h` will give a full output of Tasks and Global Options. `tusk
-<task> -h` will give detailed information on the different tasks. The tasks used
-most are `tusk bootstrap` to get started with the project and `tusk test_suite`
-to run the test suite.
+#### Tasks
+
+`setup`:
+    * Manage project dependencies
+
+`docker`:
+    * Build, run and destroy the `plex_notifier` Docker container
+    * `options`: _build_, _run_, _destroy_, _tag_
+
+`check`:
+    * Run test suite; `pytest` and `pylint`
+    * `options`: _lint_, _test_
+
+`notify`:
+    * Run `plex_notifer`
+    * `options`: _schedule_, _cancel_
+
+#### Where It Is Used
+
+Tusk is used locally to bootstrap the project as well as to do any amount of
+local testing; unit tests, lint, build and run containers.
+
+Tusk is also used in the `.travis.yml` file to bootstrap the container used for
+the build and execute the test suite. When a release is made Tusk is used to
+build the Docker container for the release version.
+
+Tusk is also used inside the `Dockerfile`. When a `docker build` is executed
+part of the build is `tusk` bootstrapping the container and running the test
+suite. Tusk is also used to create the cron job to run `plex_notifier` on
+container start using the `CMD` section in the `Dockerfile`
 
 ### Setting Parameters
 
@@ -103,19 +131,19 @@ managing a scheduler like cron.
 #### Running the Container
 
 Docker must be installed on the system the container will run on. For Mac OS X
-this can be done with Homebrew. For CentOS distros or Ubuntu distros apt or yum
+this can be done with Homebrew. For CentOS distros or Ubuntu distros yum or apt
 can be used.
 
 Pull the latest version of the container from [Docker Hub](https://hub.docker.com/r/discr33t/plex_notifier/),
 which should be inline with the GitHub release.
 
-Create a `plex_envs` file for the environment variables necessary to run the
-application. A list can be found in the [Setting
+Create a `.plex_envs` file in the home directory for the environment variables
+necessary to run the application. A list can be found in the [Setting
 Parameters](#setting-parameters) section above.
 
-Run the Docker container passing the `plex_envs` file.
+Run the Docker container passing the `.plex_envs` file.
 ```
-docker run --env-file <path/to/plex_envs> plex_notifier:<version tag>
+docker run --env-file ~/.plex_envs plex_notifier:<version tag>
 ```
 
 ## Limitations
@@ -128,8 +156,8 @@ change.
 
 ## Disclaimers
 
-This is minimal viable product but stable. Features and test coverage are
-limited. More robust features, testing and build pipeline are on the roadmap.
+Features and test coverage are limited. More robust features, and a more robust
+test suite are on the roadmap.
 
 ## Contributions
 
