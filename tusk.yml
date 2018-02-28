@@ -14,7 +14,7 @@ tasks:
           - brew install docker-machine-completion
       - when:
           os: linux
-        environment:
+        set-environment:
           LC_ALL: C.UTF-8
           LANG: C.UTF-8
       - command:
