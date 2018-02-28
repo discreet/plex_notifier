@@ -10,7 +10,7 @@ notifications:
 env:
   global:
   - GITHUB="https://github.com"
-  - TUSK_VER=0.3.2
+  - TUSK_VER=0.3.3
   - secure: Vv8Agru45b93751nI1iM8F4NEEhHDFPw8vblaYC7LskG8sAmLc+H5X3Dg+YZHSAYlIiSmY9F/jRjZ7Jrpsk+ouE/UpDWJu7TYi9MU2vSY2eBmvSzc4fhjmAP7oxUPzPSbaF1nJmYQhZdm9AKJ/GWlJ01YCbO4awr+7yleH3Xa5j7cD9e94/WbCY7zATITTFJhceq5BoFiMk/ucgs+sEhCSgfpwDNMtHvIv4EpKc4Er36cSUJTrGwmIO2jDHIjWaQTlI3NtZYLx2b16YrA0b6whGkx7FL3SdigMCihz5InIcO7y9u7TKO8AIpgdO6ty1ixUn+99igDMaBLB0wxoE9PyQnDQz3UAaw4gACMWhR4xKgr2kNaEc0bfevoucSzfU4IxjRFsKKaXG0+mtFOV9/3CQPsyw4xbwnjVtkgmUfbDoNGFkmlVWlhyT0o8MvnfGwefgt9lw8xMhSwj9hPcasK4kn4loQ0PYsjp72n1GOqPxiCPJGm0/wviGzLwk/BqJSHSmfcIFkpMR6ZLPlP65xRH1RN8rTZmHp8QgOaSK+lc51CnnlmJEeNDZw4oluKs9H+A91NI/ymiD0tlK7b1P77UmU1EN1hpKUyKMTTCB81K5Ccndg/OB4SpbgUcxvszwHLsCJLszxVK1Oy4j9CzQSOkWVZxr0EbYNGPc6CNRLb1o=
 install:
 - wget ${GITHUB}/rliebz/tusk/releases/download/v${TUSK_VER}/tusk_${TUSK_VER}_linux_amd64.deb
