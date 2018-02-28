@@ -49,19 +49,19 @@ running `tusk <task> --help`.
 #### Tasks
 
 `setup`:  
-    * Manage project dependencies
+  * Manage project dependencies
 
 `docker`:  
-    * Build, run and destroy the `plex_notifier` Docker container  
-    * `options`: _build_, _run_, _destroy_, _tag_
+  * Build, run and destroy the `plex_notifier` Docker container  
+  * `options`: _build_, _run_, _destroy_, _tag_
 
 `check`:  
-    * Run test suite; `pytest` and `pylint`  
-    * `options`: _lint_, _test_
+  * Run test suite; `pytest` and `pylint`  
+  * `options`: _lint_, _test_
 
 `notify`:  
-    * Run `plex_notifer`  
-    * `options`: _schedule_, _cancel_
+  * Run `plex_notifer`  
+  * `options`: _schedule_, _cancel_
 
 #### Where It Is Used
 
